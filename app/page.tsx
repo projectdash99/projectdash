@@ -59,6 +59,7 @@ export default function Home() {
           setModelDropdownOpen={setModelDropdownOpen}
           setMobileDrawerOpen={setMobileDrawerOpen}
           setRightPanelOpen={setRightPanelOpen}
+          messages={messages}
         />
 
         {messages.length === 0 ? (

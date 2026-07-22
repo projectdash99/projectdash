@@ -14,7 +14,7 @@ const fraunces = Fraunces({
 import { ThemeProvider } from "../components/ThemeProvider";
 
 export const metadata = {
-  title: "ProjectDash",
+  title: "DashChat",
   description: "Multi-Model AI Chat Platform",
 };
 

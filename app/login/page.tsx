@@ -68,7 +68,7 @@ export default function LoginPage() {
         <div className="flex justify-center mb-8">
           <span className="brand-orb w-10 h-10 rounded-full shrink-0"></span>
         </div>
-        <h1 className="text-2xl font-semibold text-center mb-6 font-serif">Welcome to ProjectDash</h1>
+        <h1 className="text-2xl font-semibold text-center mb-6 font-serif">Welcome to DashChat</h1>
         
         {error && (
           <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 text-red-500 rounded-lg text-sm text-center">

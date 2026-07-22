@@ -59,7 +59,7 @@ export default function Composer({ input, handleInputChange, handleSubmit, activ
           value={input}
           onChange={handleInputChange}
           onKeyDown={onKeyDown}
-          placeholder="Message ProjectDash…"
+          placeholder="Message DashChat…"
           rows={1}
           className="flex-1 min-w-[60px] text-[14.5px] text-text-primary px-1 py-1.5 resize-none bg-transparent max-h-[120px] overflow-y-auto border-none outline-none leading-[1.4] max-[768px]:order-[-1] max-[768px]:w-full max-[768px]:flex-none max-[768px]:mb-2 placeholder:text-text-muted"
         />

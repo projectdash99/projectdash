@@ -50,7 +50,7 @@ export default function Sidebar({ collapsed, setCollapsed, mobileDrawerOpen, set
           {!collapsed && (
             <div className="flex items-center gap-2 mb-4 justify-center md:justify-start">
               <span className="brand-orb w-5 h-5 rounded-full shrink-0"></span>
-              <span className="font-semibold text-[15px] tracking-[-0.01em]">ProjectDash</span>
+              <span className="font-semibold text-[15px] tracking-[-0.01em]">DashChat</span>
             </div>
           )}
           
