@@ -15,6 +15,20 @@ export default function Home() {
   const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
   const [activeModel, setActiveModel] = useState("Gemini");
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 1024 && window.innerWidth > 768) {
+        setSidebarCollapsed(true);
+        setRightPanelOpen(false);
+      } else if (window.innerWidth <= 768) {
+        setRightPanelOpen(false);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const { messages, input, handleInputChange, handleSubmit, setInput, isLoading, append } = useChat({
     api: "/api/chat",
   });
@@ -24,10 +38,10 @@ export default function Home() {
   };
 
   return (
-    <div className={`h-screen overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] grid ${
+    <div className={`h-screen overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] grid max-[768px]:grid-cols-1 max-[1024px]:min-[769px]:grid-cols-[72px_1fr] ${
       sidebarCollapsed 
-        ? (rightPanelOpen ? "grid-cols-[72px_1fr_320px] max-[860px]:grid-cols-1" : "grid-cols-[72px_1fr_0px] max-[860px]:grid-cols-1")
-        : (rightPanelOpen ? "grid-cols-[280px_1fr_320px] max-[860px]:grid-cols-1" : "grid-cols-[280px_1fr_0px] max-[860px]:grid-cols-1")
+        ? (rightPanelOpen ? "min-[1025px]:grid-cols-[72px_1fr_320px]" : "min-[1025px]:grid-cols-[72px_1fr_0px]")
+        : (rightPanelOpen ? "min-[1025px]:grid-cols-[280px_1fr_320px]" : "min-[1025px]:grid-cols-[280px_1fr_0px]")
     }`}>
       
       <Sidebar 

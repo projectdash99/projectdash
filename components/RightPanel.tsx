@@ -4,7 +4,11 @@ export default function RightPanel({ open, setOpen, setInput }: any) {
   if (!open) return null;
 
   return (
-    <aside className="bg-surface border-l border-border flex flex-col overflow-hidden transition-all duration-300 max-[860px]:hidden">
+    <aside className={`
+      bg-surface border-l border-border flex flex-col overflow-hidden transition-all duration-300
+      max-[1024px]:fixed max-[1024px]:top-0 max-[1024px]:right-0 max-[1024px]:bottom-0 max-[1024px]:w-[320px] max-[768px]:w-full max-[1024px]:z-50 max-[1024px]:shadow-[-20px_0_60px_rgba(0,0,0,0.15)]
+      ${open ? "max-[1024px]:translate-x-0" : "max-[1024px]:translate-x-full"}
+    `}>
       <div className="flex justify-between items-center px-4 py-4 border-b border-border text-[13.5px] font-medium">
         <span>Details</span>
         <button onClick={() => setOpen(false)} className="text-text-muted hover:text-text-primary transition-colors">
