@@ -1,12 +1,25 @@
-import { Plus, PanelLeftClose, Search, MessageSquare, LayoutGrid, Library, FileText, Settings, Moon, Sun } from "lucide-react";
+import { Plus, PanelLeftClose, Search, MessageSquare, LayoutGrid, Library, FileText, Settings, Moon, Sun, LogOut } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import { createClient } from "@/utils/supabase/client";
 
 export default function Sidebar({ collapsed, setCollapsed, mobileDrawerOpen, setMobileDrawerOpen }: any) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [user, setUser] = useState<any>(null);
+  const supabase = createClient();
   
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+    supabase.auth.getUser().then(({ data }) => {
+      if (data?.user) setUser(data.user);
+    });
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    window.location.href = '/login';
+  };
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -90,26 +103,65 @@ export default function Sidebar({ collapsed, setCollapsed, mobileDrawerOpen, set
           </div>
         </div>
 
-        <div className={`p-4 border-t border-border flex items-center justify-between ${collapsed ? 'justify-center flex-col gap-2' : ''}`}>
-          <div className="flex items-center gap-2">
-            <span className="w-7 h-7 rounded-full bg-accent-light text-accent flex items-center justify-center text-xs font-semibold shrink-0">A</span>
-            {!collapsed && (
-              <div className="flex flex-col">
-                <span className="text-[12.5px] font-medium">Aman</span>
-                <span className="text-[11px] text-text-muted">Free plan</span>
-              </div>
-            )}
+        <div className={`p-4 border-t border-border flex flex-col gap-3 ${collapsed ? 'items-center' : ''}`}>
+          <div className="flex items-center justify-between w-full">
+            <div className="flex items-center gap-2 overflow-hidden">
+              <span className="w-7 h-7 rounded-full bg-accent-light text-accent flex items-center justify-center text-xs font-semibold shrink-0">
+                {user?.email?.charAt(0).toUpperCase() || 'U'}
+              </span>
+              {!collapsed && (
+                <div className="flex flex-col min-w-0">
+                  <span className="text-[12.5px] font-medium truncate">
+                    {user?.user_metadata?.full_name || user?.email || 'User'}
+                  </span>
+                  <span className="text-[11px] text-text-muted truncate">Free plan</span>
+                </div>
+              )}
+            </div>
+            
+            <div className={`flex items-center gap-1 ${collapsed ? 'hidden' : ''}`}>
+              <button 
+                className="w-7 h-7 flex items-center justify-center rounded-full text-text-secondary hover:bg-accent-light hover:text-text-primary active:scale-90 transition-all duration-300 shrink-0" 
+                onClick={toggleTheme}
+                title="Toggle Theme"
+              >
+                {mounted && (theme === "dark" ? (
+                  <Sun size={14} strokeWidth={1.5} className="animate-in spin-in-90 fade-in zoom-in" />
+                ) : (
+                  <Moon size={14} strokeWidth={1.5} className="animate-in spin-in-90 fade-in zoom-in" />
+                ))}
+              </button>
+              <button 
+                onClick={handleLogout}
+                className="w-7 h-7 flex items-center justify-center rounded-full text-text-secondary hover:bg-red-500/10 hover:text-red-500 active:scale-90 transition-all duration-300 shrink-0"
+                title="Log out"
+              >
+                <LogOut size={14} strokeWidth={1.5} />
+              </button>
+            </div>
           </div>
-          <button 
-            className="w-7 h-7 flex items-center justify-center rounded-full text-text-secondary hover:bg-accent-light hover:text-text-primary active:scale-90 transition-all duration-300 shrink-0" 
-            onClick={toggleTheme}
-          >
-            {mounted && (theme === "dark" ? (
-              <Sun size={16} strokeWidth={1.3} className="animate-in spin-in-90 fade-in zoom-in" />
-            ) : (
-              <Moon size={16} strokeWidth={1.3} className="animate-in spin-in-90 fade-in zoom-in" />
-            ))}
-          </button>
+          
+          {/* Mobile/Collapsed actions */}
+          {collapsed && (
+            <div className="flex flex-col gap-2">
+              <button 
+                className="w-7 h-7 flex items-center justify-center rounded-full text-text-secondary hover:bg-accent-light hover:text-text-primary active:scale-90 transition-all duration-300 shrink-0" 
+                onClick={toggleTheme}
+              >
+                {mounted && (theme === "dark" ? (
+                  <Sun size={14} strokeWidth={1.5} />
+                ) : (
+                  <Moon size={14} strokeWidth={1.5} />
+                ))}
+              </button>
+              <button 
+                onClick={handleLogout}
+                className="w-7 h-7 flex items-center justify-center rounded-full text-text-secondary hover:bg-red-500/10 hover:text-red-500 active:scale-90 transition-all duration-300 shrink-0"
+              >
+                <LogOut size={14} strokeWidth={1.5} />
+              </button>
+            </div>
+          )}
         </div>
       </aside>
     </>
