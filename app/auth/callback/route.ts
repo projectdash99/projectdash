@@ -37,10 +37,21 @@ export async function GET(request: Request) {
       }
     )
     
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
-    if (!error) {
-      return NextResponse.redirect(`${redirectOrigin}${next}`)
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+    console.log("OAuth data:", data)
+    console.error("OAuth error:", error)
+
+    if (error) {
+      return NextResponse.json(
+        {
+          message: error.message,
+          error,
+        },
+        { status: 500 }
+      )
     }
+
+    return NextResponse.redirect(`${redirectOrigin}${next}`)
   }
 
   // return the user to an error page with instructions
