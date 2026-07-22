@@ -1,0 +1,96 @@
+UI GENERATION PROMPT — Multi-Model AI Chat Platform
+
+PROJECT CONTEXT
+We are building a premium AI chatbot website (like Claude, ChatGPT, and Grok) that lets
+users chat with multiple AI models — Gemini, DeepSeek, and others via OpenRouter — from
+one unified interface. This is a web app first, and will later become a native mobile app,
+so the design needs to translate cleanly to mobile without a redesign.
+
+Tech stack: Next.js App Router, Tailwind CSS, shadcn/ui components, Framer Motion for
+animation, Vercel AI SDK for streaming responses, Supabase for auth and database.
+
+DESIGN DIRECTION
+The goal is to feel more premium than ChatGPT, cleaner than Claude, more elegant than
+Perplexity, and more refined than Grok. Think Apple Human Interface Guidelines meets
+Linear meets Arc Browser. Calm, spacious, minimal — never busy or cluttered.
+
+Avoid: cyberpunk or gaming aesthetics, heavy drop shadows, overly colorful UI, generic
+SaaS dashboard layouts, dense/cramped spacing, and default system fonts.
+
+TYPOGRAPHY
+Use Inter for all standard UI text (labels, buttons, body copy, sidebar). But for
+greetings, hero headlines, and empty-state text, use a refined editorial serif font
+(like Fraunces or Newsreader). This serif accent is our signature differentiator — none
+of the competitors combine serif warmth with a clean AI product UI. Keep headings
+slightly tight in tracking; keep the serif normal tracking.
+
+COLOR SYSTEM
+Light mode: near-white background (#FAFAFA), white cards, soft gray borders, near-black
+text, with a lavender-purple accent (#8B7FFF) and a very light lavender tint for
+highlighted areas.
+Dark mode: near-black background (#090909), dark charcoal cards, subtle borders, off-white
+text, with a lighter lavender accent (#9D8BFF) for good contrast.
+
+LAYOUT
+
+Sidebar (280px wide, collapsible to 72px icon-only):
+- Top: logo, brand name, "New Chat" button, search bar for past chats
+- Navigation: Chats, Explore Models, Library, Files, Settings
+- Chat history grouped by: Today, Yesterday, Last 7 Days, Older
+- Bottom: user profile, plan badge, theme toggle
+
+Header:
+- Rounded pill-style model selector showing the current model
+- Conversation title
+- Share and export buttons
+
+Empty state (shown when starting a new chat):
+- Centered layout, both vertically and horizontally
+- A soft, ambient floating gradient orb (lavender, blue, and pink blended together,
+  gently blurred — should feel alive, not static)
+- Serif-font greeting: "Good morning, [user's name]"
+- Headline underneath: "How can I help today?"
+- Below that, a row of quick-action cards: Research, Write, Code, Analyze, Summarize
+
+Chat conversation:
+- User messages: right-aligned, light lavender background bubble, rounded corners (24px),
+  max 70% width
+- Assistant messages: left-aligned, no bubble background at all — reads like a clean
+  article/text block, full width of the chat column
+- Code blocks: always dark background even in light mode, rounded corners, copy button,
+  syntax highlighting
+- Responses stream in smoothly, word-by-word — no jarring pop-in
+
+Composer (chat input area):
+- Sticky to the bottom of the screen
+- Floating glass-pill shape with soft blur behind it, rounded corners (28px)
+- Contains: attachment button, model selector chip, web search toggle, "deeper research"
+  toggle, the text input itself, voice input button, and send button
+- Expands vertically as the user types more
+
+Right panel (optional, collapsed by default):
+- 320px wide when open
+- Tabs/sections: Sources, Files, Artifacts, Generated Images, and a "Predictive
+  Suggestions" section that shows smart follow-up questions based on the conversation
+
+MOBILE BEHAVIOR
+- Sidebar becomes a slide-in drawer
+- Model selector becomes a bottom sheet
+- Composer stays fixed to the bottom, respecting safe areas (notch/home indicator)
+- Messages go full-width, edge-to-edge, native-app feel
+
+MOTION
+Use Framer Motion for all transitions — fades, scale-ins, slides, and blur transitions.
+Keep everything fast (150-250ms) and subtle. No bouncy or overshooting animations.
+
+BRANDING
+The signature visual element across the whole product is the "AI Orb" — a soft blended
+gradient of lavender, blue, and pink. Use it consistently: on the landing page, in the
+empty state, as a loading indicator, during model selection, and as part of the core
+brand identity/logo mark.
+
+TASK
+Using all of the above, generate the complete UI for this AI chatbot platform — covering
+desktop and mobile layouts, light and dark mode, the empty state, an active conversation
+view, and the composer. Build it using Next.js, Tailwind CSS, and shadcn/ui components,
+with Framer Motion for animation, matching this design direction exactly.

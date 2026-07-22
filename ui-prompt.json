@@ -1,0 +1,205 @@
+{
+  "project": {
+    "name": "Multi-Model AI Chat Platform",
+    "description": "A premium AI chatbot platform supporting Gemini, Claude, GPT, Grok, DeepSeek, and future models through a unified interface. Web app first, native mobile app later — the design system must translate directly to mobile without a redesign.",
+    "tech_stack": {
+      "frontend": "Next.js App Router",
+      "styling": "Tailwind CSS",
+      "ui_library": "shadcn/ui",
+      "animation": "Framer Motion",
+      "ai_streaming": "Vercel AI SDK",
+      "database": "Supabase (Postgres)",
+      "authentication": "Supabase Auth",
+      "ai_models_integrated": ["Gemini", "DeepSeek", "OpenRouter (gateway for additional models)"]
+    }
+  },
+  "design_system": {
+    "design_philosophy": [
+      "Premium",
+      "Minimal",
+      "Calm",
+      "Intelligent",
+      "Spacious",
+      "Apple-inspired",
+      "Editorial",
+      "Future-proof",
+      "AI-first"
+    ],
+    "avoid": [
+      "Cyberpunk",
+      "Gaming aesthetics",
+      "Heavy drop shadows",
+      "Overly colorful interfaces",
+      "Generic SaaS dashboard look",
+      "Dense/cramped layouts",
+      "Default system fonts"
+    ]
+  },
+  "colors": {
+    "light": {
+      "background": "#FAFAFA",
+      "surface": "#FFFFFF",
+      "card": "#FFFFFF",
+      "border": "#EAEAEA",
+      "primary_text": "#111111",
+      "secondary_text": "#6B7280",
+      "muted_text": "#9CA3AF",
+      "accent": "#8B7FFF",
+      "accent_light": "#F3F1FF",
+      "success": "#10B981",
+      "danger": "#EF4444"
+    },
+    "dark": {
+      "background": "#090909",
+      "surface": "#111111",
+      "card": "#161616",
+      "border": "#262626",
+      "primary_text": "#FAFAFA",
+      "secondary_text": "#A3A3A3",
+      "muted_text": "#6B6B6B",
+      "accent": "#9D8BFF",
+      "accent_light": "#1E1A2E"
+    }
+  },
+  "typography": {
+    "ui_font": "Inter Variable",
+    "accent_font": "A refined editorial serif — Fraunces or Newsreader — used ONLY for greetings, hero headlines, and empty-state text. This is the signature differentiator vs competitors who use sans-serif everywhere.",
+    "heading_weight": "600-700",
+    "body_weight": "400-500",
+    "hero_size": "48-64px (serif)",
+    "greeting_size": "32-40px (serif)",
+    "section_title_size": "20-24px (sans)",
+    "body_size": "15-16px (sans)",
+    "label_size": "12-13px (sans)",
+    "tracking": "slightly tight on sans headings, normal tracking on serif"
+  },
+  "visual_style": {
+    "border_radius": {
+      "cards": "24px",
+      "buttons": "16px",
+      "inputs": "20px",
+      "chat_input": "28px"
+    },
+    "effects": [
+      "Soft glassmorphism on floating panels",
+      "Subtle background blur behind composer",
+      "Thin 1px borders instead of heavy shadows",
+      "Ambient gradient glow behind the orb/branding element",
+      "Large rounded corners throughout",
+      "Soft, low-opacity elevation only where needed"
+    ]
+  },
+  "layout": {
+    "desktop": {
+      "sidebar_width": "280px",
+      "collapsed_sidebar_width": "72px",
+      "content_max_width": "980px",
+      "chat_max_width": "800px"
+    },
+    "tablet": {
+      "sidebar": "collapsible, overlay on top of content when expanded"
+    },
+    "mobile": {
+      "sidebar": "drawer (slide-in from left)",
+      "model_selector": "bottom_sheet",
+      "composer": "fixed_bottom, safe-area aware"
+    }
+  },
+  "sidebar": {
+    "sections": {
+      "top": ["Logo", "Brand Name", "New Chat Button", "Search Chats"],
+      "navigation": ["Chats", "Explore Models", "Library", "Files", "Settings"],
+      "history_grouping": ["Today", "Yesterday", "Last 7 Days", "Older"],
+      "bottom": ["User Profile", "Plan Badge", "Theme Toggle"]
+    },
+    "style_reference": "Claude + Linear + Arc Browser inspired — minimal icons, generous vertical spacing between groups"
+  },
+  "header": {
+    "components": ["Model Selector (rounded pill)", "Current Model Badge", "Conversation Title", "Share Button", "Export Button"]
+  },
+  "supported_models_ui": ["Gemini", "DeepSeek", "GPT (via OpenRouter)", "Claude (via OpenRouter)", "Grok (via OpenRouter)"],
+  "empty_state": {
+    "layout": "centered vertically and horizontally",
+    "orb": {
+      "type": "floating_gradient_orb",
+      "colors": ["#C4B5FD", "#8B7FFF", "#F9A8D4", "#93C5FD"],
+      "blur": "soft, ambient — should feel alive, not static"
+    },
+    "greeting": "Good morning, {user} — rendered in the editorial serif font",
+    "headline": "How can I help today?",
+    "quick_action_cards": ["Research", "Write", "Code", "Analyze", "Summarize"]
+  },
+  "chat": {
+    "message_spacing": "32px between turns",
+    "user_message": {
+      "alignment": "right",
+      "background": "accent_light",
+      "radius": "24px",
+      "max_width": "70%"
+    },
+    "assistant_message": {
+      "alignment": "left",
+      "style": "text-first, no bubble background — reads like an article",
+      "max_width": "100% of chat column"
+    },
+    "code_block": {
+      "background": "dark surface even in light mode",
+      "radius": "20px",
+      "copy_button": true,
+      "syntax_highlighting": true
+    },
+    "streaming": "true — word-by-word reveal, no jarring pop-in"
+  },
+  "composer": {
+    "position": "sticky_bottom",
+    "height": "72-120px, expands with content",
+    "radius": "28px",
+    "style": "floating glass pill, sits above the background with soft blur",
+    "components": ["Attachment Button", "Model Selector chip", "Web Search Toggle", "Deeper Research Toggle", "Prompt Input", "Voice Input", "Send Button"]
+  },
+  "multi_model_experience": {
+    "model_chips": true,
+    "quick_switching": "single dropdown, no page reload",
+    "comparison_mode": "optional future feature — split view showing two model responses side by side"
+  },
+  "right_panel": {
+    "default_state": "collapsed",
+    "width": "320px",
+    "sections": ["Sources", "Files", "Artifacts", "Generated Images", "Predictive Suggestions (contextual next-question prompts based on conversation)"]
+  },
+  "mobile_app": {
+    "native_feel": true,
+    "edge_to_edge_layout": true,
+    "full_width_messages": true,
+    "safe_area_handling": "required for notch/home-indicator devices"
+  },
+  "animations": {
+    "library": "Framer Motion",
+    "duration": "150ms-250ms",
+    "effects": ["fade", "scale", "slide", "blur"],
+    "hover_states": "subtle, no bounce or overshoot"
+  },
+  "branding": {
+    "signature_element": {
+      "name": "AI Orb",
+      "colors": ["Lavender", "Blue", "Pink"],
+      "usage": ["Landing page", "Empty state", "Loading indicator", "Model selection", "Brand identity/logo mark"]
+    }
+  },
+  "inspiration_sources": {
+    "primary": ["Claude", "ChatGPT", "Arc Browser", "Linear", "Apple Human Interface Guidelines"],
+    "visual_patterns_extracted": [
+      "Large whitespace",
+      "Centered chat layouts",
+      "Soft gradients",
+      "Minimal sidebars",
+      "Floating pill-shaped input composer",
+      "Premium serif-accented typography",
+      "Thin borders over shadows",
+      "Rounded surfaces throughout",
+      "Calm visual hierarchy",
+      "Grouped chat history by recency"
+    ]
+  },
+  "goal": "Create an AI product that feels more premium than ChatGPT, cleaner than Claude, more elegant than Perplexity, and more refined than Grok — while remaining highly usable across desktop, tablet, and mobile, and ready to become a native app without redesign."
+}
