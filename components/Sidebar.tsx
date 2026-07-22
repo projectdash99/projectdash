@@ -1,26 +1,25 @@
-import { Plus, PanelLeftClose, Search, MessageSquare, LayoutGrid, Library, FileText, Settings, Moon } from "lucide-react";
+import { Plus, PanelLeftClose, Search, MessageSquare, LayoutGrid, Library, FileText, Settings, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
 export default function Sidebar({ collapsed, setCollapsed, mobileDrawerOpen, setMobileDrawerOpen }: any) {
   const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
   
   useEffect(() => setMounted(true), []);
+
   const toggleTheme = () => {
-    if (document.documentElement.classList.contains("dark")) {
-      document.documentElement.classList.remove("dark");
-    } else {
-      document.documentElement.classList.add("dark");
-    }
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   return (
     <>
       <div 
-        className={`fixed inset-0 bg-black/20 z-40 min-[861px]:hidden transition-opacity ${mobileDrawerOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`} 
+        className={`fixed inset-0 bg-black/20 z-40 min-[861px]:hidden transition-opacity duration-200 ${mobileDrawerOpen ? "opacity-100 pointer-events-auto backdrop-blur-[2px]" : "opacity-0 pointer-events-none"}`} 
         onClick={() => setMobileDrawerOpen(false)} 
       />
       <aside className={`
-        bg-surface border-r border-border flex flex-col overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]
+        bg-surface border-r border-border flex flex-col overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.175,0.885,0.32,1)]
         max-[860px]:fixed max-[860px]:top-0 max-[860px]:left-0 max-[860px]:bottom-0 max-[860px]:w-[280px] max-[860px]:z-50 max-[860px]:shadow-[20px_0_60px_rgba(0,0,0,0.15)]
         ${mobileDrawerOpen ? "max-[860px]:translate-x-0" : "max-[860px]:-translate-x-full"}
       `}>
@@ -33,43 +32,43 @@ export default function Sidebar({ collapsed, setCollapsed, mobileDrawerOpen, set
           )}
           
           <div className={`flex ${collapsed ? 'flex-col-reverse' : 'gap-2 mb-2.5'}`}>
-            <button className={`flex items-center justify-center gap-1.5 p-2.5 rounded-btn bg-text-primary text-bg text-[13px] font-medium hover:opacity-85 transition-opacity ${collapsed ? '' : 'flex-1'}`}>
+            <button className={`flex items-center justify-center gap-1.5 p-2.5 rounded-btn bg-text-primary text-bg text-[13px] font-medium hover:scale-[0.98] active:scale-95 transition-all ${collapsed ? '' : 'flex-1'}`}>
               <Plus size={16} strokeWidth={1.6} />
               {!collapsed && <span>New chat</span>}
             </button>
             <button 
               onClick={() => setCollapsed(!collapsed)} 
-              className={`flex items-center justify-center w-9 h-9 rounded-btn border border-border text-text-secondary hover:bg-accent-light max-[860px]:hidden ${collapsed ? 'rotate-180' : ''}`}
+              className={`flex items-center justify-center w-9 h-9 rounded-btn border border-border text-text-secondary hover:bg-accent-light hover:text-text-primary active:scale-95 transition-all duration-300 max-[860px]:hidden ${collapsed ? 'rotate-180' : ''}`}
             >
               <PanelLeftClose size={16} strokeWidth={1.4} />
             </button>
           </div>
 
-          <div className={`flex items-center gap-2 px-3 py-2 rounded-input border border-border text-text-muted ${collapsed ? 'justify-center border-none bg-transparent' : ''}`}>
+          <div className={`flex items-center gap-2 px-3 py-2 rounded-input border border-border text-text-muted transition-colors focus-within:border-accent/40 focus-within:ring-1 focus-within:ring-accent/20 ${collapsed ? 'justify-center border-none bg-transparent' : ''}`}>
             <Search size={14} strokeWidth={1.4} />
-            {!collapsed && <input type="text" placeholder="Search chats" className="flex-1 min-w-0 text-[13px] text-text-primary bg-transparent outline-none" />}
+            {!collapsed && <input type="text" placeholder="Search chats" className="flex-1 min-w-0 text-[13px] text-text-primary bg-transparent outline-none placeholder:text-text-muted" />}
           </div>
         </div>
 
         <nav className="flex flex-col gap-0.5 px-4 pb-4 border-b border-border">
-          <a className={`flex items-center gap-2.5 px-2 py-2 rounded-btn text-[13.5px] font-medium transition-colors cursor-pointer text-accent bg-accent-light ${collapsed ? 'justify-center' : ''}`}>
-            <MessageSquare size={16} strokeWidth={1.3} />
+          <a className={`group flex items-center gap-2.5 px-2 py-2 rounded-btn text-[13.5px] font-medium transition-colors cursor-pointer text-accent bg-accent-light ${collapsed ? 'justify-center' : ''}`}>
+            <MessageSquare size={16} strokeWidth={1.3} className="group-hover:scale-110 transition-transform" />
             {!collapsed && <span>Chats</span>}
           </a>
-          <a className={`flex items-center gap-2.5 px-2 py-2 rounded-btn text-[13.5px] text-text-secondary hover:bg-accent-light hover:text-text-primary transition-colors cursor-pointer ${collapsed ? 'justify-center' : ''}`}>
-            <LayoutGrid size={16} strokeWidth={1.3} />
+          <a className={`group flex items-center gap-2.5 px-2 py-2 rounded-btn text-[13.5px] text-text-secondary hover:bg-accent-light hover:text-text-primary transition-colors cursor-pointer ${collapsed ? 'justify-center' : ''}`}>
+            <LayoutGrid size={16} strokeWidth={1.3} className="group-hover:scale-110 transition-transform" />
             {!collapsed && <span>Explore Models</span>}
           </a>
-          <a className={`flex items-center gap-2.5 px-2 py-2 rounded-btn text-[13.5px] text-text-secondary hover:bg-accent-light hover:text-text-primary transition-colors cursor-pointer ${collapsed ? 'justify-center' : ''}`}>
-            <Library size={16} strokeWidth={1.3} />
+          <a className={`group flex items-center gap-2.5 px-2 py-2 rounded-btn text-[13.5px] text-text-secondary hover:bg-accent-light hover:text-text-primary transition-colors cursor-pointer ${collapsed ? 'justify-center' : ''}`}>
+            <Library size={16} strokeWidth={1.3} className="group-hover:scale-110 transition-transform" />
             {!collapsed && <span>Library</span>}
           </a>
-          <a className={`flex items-center gap-2.5 px-2 py-2 rounded-btn text-[13.5px] text-text-secondary hover:bg-accent-light hover:text-text-primary transition-colors cursor-pointer ${collapsed ? 'justify-center' : ''}`}>
-            <FileText size={16} strokeWidth={1.3} />
+          <a className={`group flex items-center gap-2.5 px-2 py-2 rounded-btn text-[13.5px] text-text-secondary hover:bg-accent-light hover:text-text-primary transition-colors cursor-pointer ${collapsed ? 'justify-center' : ''}`}>
+            <FileText size={16} strokeWidth={1.3} className="group-hover:scale-110 transition-transform" />
             {!collapsed && <span>Files</span>}
           </a>
-          <a className={`flex items-center gap-2.5 px-2 py-2 rounded-btn text-[13.5px] text-text-secondary hover:bg-accent-light hover:text-text-primary transition-colors cursor-pointer ${collapsed ? 'justify-center' : ''}`}>
-            <Settings size={16} strokeWidth={1.3} />
+          <a className={`group flex items-center gap-2.5 px-2 py-2 rounded-btn text-[13.5px] text-text-secondary hover:bg-accent-light hover:text-text-primary transition-colors cursor-pointer ${collapsed ? 'justify-center' : ''}`}>
+            <Settings size={16} strokeWidth={1.3} className="group-hover:scale-110 transition-transform" />
             {!collapsed && <span>Settings</span>}
           </a>
         </nav>
@@ -101,8 +100,15 @@ export default function Sidebar({ collapsed, setCollapsed, mobileDrawerOpen, set
               </div>
             )}
           </div>
-          <button className="w-7 h-7 flex items-center justify-center rounded-full text-text-secondary hover:bg-accent-light transition-colors shrink-0" onClick={toggleTheme}>
-            {mounted && <Moon size={16} strokeWidth={1.3} />}
+          <button 
+            className="w-7 h-7 flex items-center justify-center rounded-full text-text-secondary hover:bg-accent-light hover:text-text-primary active:scale-90 transition-all duration-300 shrink-0" 
+            onClick={toggleTheme}
+          >
+            {mounted && (theme === "dark" ? (
+              <Sun size={16} strokeWidth={1.3} className="animate-in spin-in-90 fade-in zoom-in" />
+            ) : (
+              <Moon size={16} strokeWidth={1.3} className="animate-in spin-in-90 fade-in zoom-in" />
+            ))}
           </button>
         </div>
       </aside>

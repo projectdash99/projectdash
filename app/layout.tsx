@@ -14,6 +14,8 @@ const absans = localFont({
   display: "swap"
 });
 
+import { ThemeProvider } from "../components/ThemeProvider";
+
 export const metadata = {
   title: "ProjectDash",
   description: "Multi-Model AI Chat Platform",
@@ -21,9 +23,11 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${absans.variable} ${instrumentSerif.variable} bg-bg text-text-primary font-sans antialiased transition-colors duration-250 ease-[cubic-bezier(0.4,0,0.2,1)]`}>
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
