@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://ui-avatars.com/api/?name=Dash+Chat&background=10a37f&color=fff&rounded=true&size=128" alt="DashChat Icon" width="128" height="128">
+  <img src="./app/icon.png" alt="DashChat Icon" width="128" height="128">
   <h1>DashChat</h1>
   <p><strong>A Premium Multi-Model AI Chat Platform</strong></p>
 </div>
