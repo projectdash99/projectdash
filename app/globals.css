@@ -2,7 +2,7 @@
 @import "@tailwindcss/typography";
 
 @theme {
-  --font-sans: var(--font-ui), -apple-system, sans-serif;
+  --font-sans: var(--font-sans), -apple-system, sans-serif;
   --font-serif: var(--font-serif), Georgia, serif;
   
   --color-bg: var(--bg);
@@ -78,3 +78,7 @@
 }
 
 textarea::-webkit-scrollbar { display: none; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}

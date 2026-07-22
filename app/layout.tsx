@@ -1,8 +1,18 @@
 import "./globals.css";
-import { Inter, Newsreader } from "next/font/google";
+import { Instrument_Serif } from "next/font/google";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-ui" });
-const newsreader = Newsreader({ subsets: ["latin"], variable: "--font-serif" });
+const instrumentSerif = Instrument_Serif({ 
+  weight: "400", 
+  subsets: ["latin"], 
+  variable: "--font-serif" 
+});
+
+const absans = localFont({ 
+  src: "../public/fonts/Absans-Regular.woff2",
+  variable: "--font-sans",
+  display: "swap"
+});
 
 export const metadata = {
   title: "ProjectDash",
@@ -12,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${newsreader.variable} bg-bg text-text-primary font-sans antialiased transition-colors duration-250 ease-[cubic-bezier(0.4,0,0.2,1)]`}>
+      <body className={`${absans.variable} ${instrumentSerif.variable} bg-bg text-text-primary font-sans antialiased transition-colors duration-250 ease-[cubic-bezier(0.4,0,0.2,1)]`}>
         {children}
       </body>
     </html>
